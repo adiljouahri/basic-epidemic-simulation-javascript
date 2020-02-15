@@ -52,7 +52,7 @@ class person_C {
 
 class People_C {//constructor 
   //the Peoples
-  constructor(nb_rows, nb_cols) {
+  constructor(nb_rows, nb_cols,PROBA_DEATH,CONTAGION_RATE,PROBA_INFECT,VACCINATION_RATE) {
     this.nb_rows = nb_cols;
     this.nb_cols = nb_cols;
     this.all = new Array();
@@ -229,12 +229,12 @@ const random = (a) => Math.floor(Math.random() * a);
 const sliderWidth = 200;
 const sliderHeight = 50;
 
-let People = new People_C(20, 20)
 const PROBA_DEATH_callBack = (e) => {//constructor
   PROBA_DEATH_Value.innerText = e.value;
   console.log("TCL: PROBA_DEATH_callBack -> e.value", Number(e.value))
-
-  People.set("PROBA_DEATH", Number(e.value))
+  PROBA_DEATH=Number(e.value)
+  People.set("PROBA_DEATH", Number(e.value));
+  setup();
 }
 
 
@@ -243,20 +243,24 @@ const VACCINATION_RATE_callBack = (e) => {//constructor
   document.getElementById('VACCINATION_RATE_Value').innerText = e.value;
   document.getElementById('VACCINATION_RATE_Value').value = e.value;
 
-  People.set("VACCINATION_RATE", Number(e.value))
+  VACCINATION_RATE=Number(e.value)
+  People.set("VACCINATION_RATE", Number(e.value));
+  setup();
 }
 const CONTAGION_RATE_callBack = (e) => {//constructor
 
   CONTAGION_RATE_Value.innerText = e.value;
-
+  CONTAGION_RATE=Number(e.value)
+  PROBA_INFECT=Number(e.value)
   People.set("CONTAGION_RATE", Number(e.value))
   People.set("PROBA_INFECT", Number(e.value) * 10)
+  setup();
 
 }
 
 
 function setup() {
-  People = new People_C(20, 20)
+  People = new People_C(20, 20,PROBA_DEATH,CONTAGION_RATE,PROBA_INFECT,VACCINATION_RATE)
 
   createCanvas(800, 800);
   People.init();
