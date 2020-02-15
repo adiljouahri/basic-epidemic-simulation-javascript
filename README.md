@@ -5,5 +5,6 @@ I used JavaScript library P5.js instead of python in the original repository,so 
 
 git clone https://github.com/adiljouahri/basic-epidemic-simulation-javascript.git
 
-
+# Original repository 
+https://github.com/najibelmokhtari/basic-epidemic-simulation
  
