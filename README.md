@@ -8,3 +8,6 @@ git clone https://github.com/adiljouahri/basic-epidemic-simulation-javascript.gi
 # Original repository 
 https://github.com/najibelmokhtari/basic-epidemic-simulation
  
+ # how to use?
+ make sure you put the three files index.html, p5.js, sketch.js in the same folder. <br/>
+ open index.html in any browser. 
