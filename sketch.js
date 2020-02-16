@@ -107,6 +107,7 @@ class People_C {//constructor
         } else if (this.all[r][c].dead) {
           this.all[r][c].setColor(color(colors.WHITE));
         } else if (this.all[r][c].sick >= 10) {
+          console.log(this.all[r][c])
           this.all[r][c].setColor(color(colors.RED));
         } else if (this.all[r][c].sick == 0) {
           this.all[r][c].setColor(color(colors.BLUE));
@@ -152,9 +153,10 @@ class People_C {//constructor
   spreadDisease(People, conti) {
     if (!this.startDisease && People) {//false enter the loop
       let a = random(this.nb_rows), b = random(this.nb_cols)
-      const patientZero = this.all[a][b].sick
+      console.log(a,b)
+      let patientZero = this.all[a][b].sick
+
       this.vaccinate()
-      // console.log("TCL: People_kC -> spreadDisease -> patientZero", a, b)
       if (this.all[a][b].Vaccinate) return People.spreadDisease()
       this.all[a][b].sick = 10;
       this.NBInfected++
@@ -202,7 +204,7 @@ class People_C {//constructor
             x2 = neighbour[0]
             y2 = neighbour[1]
             //fix the issue with the y2 don't exist if we select the Nomber of rows and column is different. 
-            if (this.all[x2]&&!this.all[x2][y2].Vaccinate && this.all[x2][y2].sick === 0 && this.all[x2][y2]) {
+            if (this.all[x2]&&this.all[x2][y2]&&!this.all[x2][y2].Vaccinate && this.all[x2][y2].sick === 0 && this.all[x2][y2]) {
               this.all[x2][y2].sick = 10;
               this.NBInfected = this.NBInfected + 1
 
@@ -286,11 +288,13 @@ function draw() {
 }
 function run() {
   conti = true
+  setup();
+  draw();
 
   // console.log("TCL: run -> run")
   loop();
 }
 
-function reload() {
-  setup();
-}
+// function reload() {
+//   setup();
+// }
