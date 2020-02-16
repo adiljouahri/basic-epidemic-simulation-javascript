@@ -6,8 +6,9 @@ let conti = false;
 let VACCINATION_RATE = 50
 let SIMULATION_SPEED = 25   // time between days in milliseconds. 0: fastest.
 // 500 means every day the simulation pauses for 500                     //25 is good for watching
-const nb_rows = 50;
-const Rayon = 20;//Rayon of circle
+let nb_rows = 50;
+let nb_cols = 50;
+let Rayon = 20;//Rayon of circle
 const colors = {
   WHITE: [255, 255, 255],
   BLUE: [0, 0, 255],
@@ -53,7 +54,7 @@ class person_C {
 class People_C {//constructor 
   //the Peoples
   constructor(nb_rows, nb_cols,PROBA_DEATH,CONTAGION_RATE,PROBA_INFECT,VACCINATION_RATE) {
-    this.nb_rows = nb_cols;
+    this.nb_rows = nb_rows;
     this.nb_cols = nb_cols;
     this.all = new Array();
     this.Default_X = Rayon;
@@ -70,7 +71,7 @@ class People_C {//constructor
   }
   set(arg, value) {
     this[arg] = value;
-    console.log(this[arg])
+    // console.log(this[arg])
 
   }
   init() {
@@ -93,7 +94,7 @@ class People_C {//constructor
 
     //55=10
 
-    console.log(this.all)
+    // console.log(this.all)
   }
   draw() {
     // console.log(this.all)
@@ -153,7 +154,7 @@ class People_C {//constructor
       let a = random(this.nb_rows), b = random(this.nb_cols)
       const patientZero = this.all[a][b].sick
       this.vaccinate()
-      console.log("TCL: People_C -> spreadDisease -> patientZero", a, b)
+      // console.log("TCL: People_kC -> spreadDisease -> patientZero", a, b)
       if (this.all[a][b].Vaccinate) return People.spreadDisease()
       this.all[a][b].sick = 10;
       this.NBInfected++
@@ -180,7 +181,7 @@ class People_C {//constructor
 
           this.all[r][c].sick++;
           if (this.all[r][c].sick >= 20) {
-            console.log(this.PROBA_DEATH)
+            // console.log(this.PROBA_DEATH)
             if (random(99) < this.PROBA_DEATH) {
               // console.log("TCL: People_C -> spreadDiksease -> person dead");
               this.all[r][c].dead = true;
@@ -194,13 +195,14 @@ class People_C {//constructor
             }
 
           }
-          console.log(this.all[r][c].Vaccinate)
+          // console.log(thkis.all[r][c].Vaccinate)
           if (!this.all[r][c].dead && !this.all[r][c].Vaccinate && random(99) < this.PROBA_INFECT) {
 
             neighbour = this.get_neighbour(r, c)
             x2 = neighbour[0]
             y2 = neighbour[1]
-            if (!this.all[x2][y2].Vaccinate && this.all[x2][y2].sick === 0 && this.all[x2][y2]) {
+            //fix the issue with the y2 don't exist if we select the Nomber of rows and column is different. 
+            if (this.all[x2]&&!this.all[x2][y2].Vaccinate && this.all[x2][y2].sick === 0 && this.all[x2][y2]) {
               this.all[x2][y2].sick = 10;
               this.NBInfected = this.NBInfected + 1
 
@@ -231,7 +233,7 @@ const sliderHeight = 50;
 
 const PROBA_DEATH_callBack = (e) => {//constructor
   PROBA_DEATH_Value.innerText = e.value;
-  console.log("TCL: PROBA_DEATH_callBack -> e.value", Number(e.value))
+  // console.log("TCL: PROBA_DEATH_callBack -> e.value", Number(e.value))
   PROBA_DEATH=Number(e.value)
   People.set("PROBA_DEATH", Number(e.value));
   setup();
@@ -257,12 +259,18 @@ const CONTAGION_RATE_callBack = (e) => {//constructor
   setup();
 
 }
-
+function setCell(e,type){
+  switch(type){
+    case 'row':nb_rows = +e.value;break;
+    case 'column':nb_cols = +e.value;break;
+  }
+  setup();
+}
 
 function setup() {
-  People = new People_C(20, 20,PROBA_DEATH,CONTAGION_RATE,PROBA_INFECT,VACCINATION_RATE)
+  People = new People_C(nb_rows, nb_cols,PROBA_DEATH,CONTAGION_RATE,PROBA_INFECT,VACCINATION_RATE)
 
-  createCanvas(800, 800);
+  createCanvas(nb_rows*Rayon*3, nb_cols*Rayon*3);
   People.init();
   People.draw();
 
@@ -274,12 +282,12 @@ function draw() {
   background(255);
   People.spreadDisease(People);
   People.draw()
-  console.log(People.PROBA_DEATH)
+  // console.log(People.PROBA_DEATH)
 }
 function run() {
   conti = true
 
-  console.log("TCL: run -> run")
+  // console.log("TCL: run -> run")
   loop();
 }
 
