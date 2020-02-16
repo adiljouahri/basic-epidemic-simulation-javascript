@@ -107,7 +107,6 @@ class People_C {//constructor
         } else if (this.all[r][c].dead) {
           this.all[r][c].setColor(color(colors.WHITE));
         } else if (this.all[r][c].sick >= 10) {
-          console.log(this.all[r][c])
           this.all[r][c].setColor(color(colors.RED));
         } else if (this.all[r][c].sick == 0) {
           this.all[r][c].setColor(color(colors.BLUE));
