@@ -19,30 +19,41 @@
 
   </div>
   <div style="display: flex;">
-    <div style="margin: 50px;display: flex;">
+    <div style="display: flex;flex-direction: column;margin-left: 40px;margin-top: 20px;">
+      <div>
+        <div style="width: 100px;">NB rows:</div>
+        <input onchange="setCell(this,'row')" type="number" value="50" />
+      </div>
+      <div>
+        <div style="width: 100px;">NB column:</div>
+        <input onchange="setCell(this,'column')" type="number" value="50" />
+      </div>
+
+    </div>
+    <div style="margin: 20px;display: flex;">
       <p style="margin: 10px;font-size: 20px;">سرعة العدوى</p>
       <input style="margin: 10px;font-size: 20px;" onchange="PROBA_DEATH_callBack(this)" type="range" min="0" max="100"
         value="50" class="slider" id="myRange">
-      <p style="margin: 10px;font-size: 30px;" id='PROBA_DEATH_Value'>50</p>
+      <p style="margin: 10px;font-size: 20px;" id='PROBA_DEATH_Value'>50</p>
     </div>
-    <div style="margin: 50px;display: flex;">
+    <div style="margin: 20px;display: flex;">
       <p style="margin: 10px;font-size: 20px;">عدد الملقحين</p>
-      <input style="margin: 10px;font-size: 20px;" onchange="VACCINATION_RATE_callBack(this)" type="range" min="0" max="100"
-        value="50" class="slider" id="myRange">
-      <p style="margin: 10px;font-size: 30px;" id='VACCINATION_RATE_Value'>50</p>
+      <input style="margin: 10px;font-size: 20px;" onchange="VACCINATION_RATE_callBack(this)" type="range" min="0"
+        max="100" value="50" class="slider" id="myRange">
+      <p style="margin: 10px;font-size: 20px;" id='VACCINATION_RATE_Value'>50</p>
     </div>
-    <div style="margin: 50px;display: flex;">
-      <p style="margin: 10px;font-size: 30px" id='CONTAGION_RATE_Value'>10</p>
+    <div style="margin: 20px;display: flex;">
+      <p style="margin: 10px;font-size: 20px" id='CONTAGION_RATE_Value'>10</p>
 
       <input style="margin: 10px;font-size: 20px;" onchange="CONTAGION_RATE_callBack(this)" type="range" min="0"
         max="20" value="10" class="slider" id="myRange">
-        <p style="margin: 10px;font-size: 20px;">نسبة الهلاك</p>
+      <p style="margin: 10px;font-size: 20px;">نسبة الهلاك</p>
 
-      
-      <button style="width: 150px;" onclick="run()">
+
+      <button style="width: 80px;margin: 5px;" onclick="run()">
         start
       </button>
-      <button style="width: 150px;" onclick="reload()">
+      <button style="width: 80px;margin: 5px;" onclick="reload()">
         reload
       </button>
     </div>
