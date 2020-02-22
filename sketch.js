@@ -1,7 +1,7 @@
 let PROBA_DEATH = 100  // the black plague was 100%. smallpox was ~30%-35%
 let CONTAGION_RATE = 4.5  // This is the R0 factor. Number of people an individual will infect on average
 
-let PROBA_INFECT = CONTAGION_RATE * 10
+let PROBA_INFECT = CONTAGION_RATE 
 let conti = false;
 let VACCINATION_RATE = 50
 let SIMULATION_SPEED = 25   // time between days in milliseconds. 0: fastest.
@@ -256,7 +256,7 @@ const CONTAGION_RATE_callBack = (e) => {//constructor
   CONTAGION_RATE=Number(e.value)
   PROBA_INFECT=Number(e.value)
   People.set("CONTAGION_RATE", Number(e.value))
-  People.set("PROBA_INFECT", Number(e.value) * 10)
+  People.set("PROBA_INFECT", Number(e.value))
   setup();
 
 }
